@@ -1,5 +1,6 @@
 package top.lrshuai.demo;
 
+import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,7 +23,7 @@ public class DemoApplication {
 	public static void printfUrl(ConfigurableApplicationContext application){
 		Environment env = application.getEnvironment();
 		String ip = "127.0.0.1";
-		String port = env.getProperty("server.port");
+		String port = StrUtil.emptyToDefault(env.getProperty("server.port"),"8080");
 		String property = env.getProperty("server.servlet.context-path");
 		String path = property == null ? "" :  property;
 		log.info("启动成功,{}:{}{}", ip,port,path);
